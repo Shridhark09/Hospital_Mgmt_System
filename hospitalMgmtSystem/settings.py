@@ -29,7 +29,7 @@ DEBUG = False
 # local true
 # DEBUG = True
 
-ALLOWED_HOSTS = [ 'shridharkatkar.herokuapp.com' ,'127.0.0.1']
+ALLOWED_HOSTS = [ '.herokuapp.com' ,'127.0.0.1']
 
 
 # Application definition
@@ -112,8 +112,7 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 
-STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
