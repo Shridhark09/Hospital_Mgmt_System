@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="copyright" content="MACode ID, https://macodeid.com/">
+
+    <link rel="stylesheet" href="{% static 'css/maicons.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'vendor/owl-carousel/css/owl.carousel.css' %}">
+
+    <link rel="stylesheet" href="{% static 'vendor/animate/animate.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+</head>
+<body>
+
+<!-- Back to top button -->
+<div class="back-to-top"></div>
+
+<header>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#"><span class="text-primary">Hospital</span>-Management</a>
+
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupport"
+                    aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupport">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'doctor' %}">Doctors</a>
+                    </li>
+
+
+                    <span class="nav-link text-black,d-flex">
+                    <div>
+                        {% if user.is_authenticated %}
+                        <a class=" btn btn-primary" href="{%url 'logout'%}">Logout</a>
+                        {% else %}
+                        <a class=" btn btn-primary ml-lg-3" href="{%url 'login'%}">Login/SignUp</a>
+                        {% endif %}
+
+                        <!--                        Hello, {{user.username|default:'Guest'}}-->
+
+
+                    </div>
+                </span>
+
+                </ul>
+            </div> <!-- .navbar-collapse -->
+        </div> <!-- .container -->
+    </nav>
+</header>
+
+
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+
+<script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+
+<script src="{% static 'js/theme.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+{% include 'base.html '%}
+
+<html lang="en">
+<head>
+    <title>doctor</title>
+
+</head>
+<body>
+
+<div class="page-banner overlay-dark bg-image" style="background-image: url({% static 'img/capsule.jpg' %});">
+    <div class="banner-section">
+        <div class="container text-center wow fadeInUp">
+            <nav aria-label="Breadcrumb">
+                <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+                    <li class="breadcrumb-item"><a href="{% url 'dashboard'%}">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Doctors</li>
+                </ol>
+            </nav>
+            <h1 class="font-weight-normal">Our Doctors</h1>
+            <h1 class="card-text">{{ count_doctor }}</h1>
+            {% if user.is_authenticated %}
+            <div class="position-absolute" data-tor="place.right place.bottom">
+                <a href="{% url 'add_doctor'%}" type="button" class="btn shadow-lg shadow-intensity-lg shadow-info btn-info">Add Doctor</a>
+
+            </div>
+            {% endif %}
+
+
+        </div> <!-- .container -->
+    </div> <!-- .banner-section -->
+</div> <!-- .page-banner -->
+        {% if messages %}
+        <!--    <ul class="messages">-->
+        {% for message in messages %}
+        <div class="alert alert-primary alert-dismissible fade show shadow-primary" role="alert" data-tor-parent="hover"
+             data-tor="hover:shadow(sm)">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                    data-tor="hover(p):[fade.in rotate.from(180deg)]"></button>
+        </div>
+        {% endfor%}
+        <!--    </ul>-->
+        {% endif %}
+
+
+<table class="table table-striped table-hover, container">
+    <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Experience</th>
+    <th>Speciality</th>
+    <th>Mobile</th>
+    <th>Email</th>
+    {% if user.is_authenticated %}
+    <th>Action</th>
+    {% endif %}
+    </thead>
+    <tbody>
+    {% for doctor in doctorList %}
+    <tr>
+        <td>{{doctor.id}}</td>
+        <td>{{doctor.Doctor_name}}</td>
+        <td>{{doctor.Age}}</td>
+        <td>{{doctor.Experience}}</td>
+        <td>{{doctor.Speciality}}</td>
+        <td>{{doctor.Mobile}}</td>
+        <td>{{doctor.Email}}</td>
+        {% if user.is_authenticated %}
+        <td><a class="btn btn-danger btn-xs" href="{% url 'deleteDoctor' doctor.id%}">Del</a></td>
+        {% endif %}
+    </tr>
+    {% endfor%}
+    </tbody>
+</table>
+
+
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'vendor/owl-carousel/js/owl.carousel.min.js' %}"></script>
+
+<script src="{% static 'vendor/wow/wow.min.js' %}"></script>
+
+<script src="{% static 'js/theme.js' %}"></script>
+
+</body>
+</html>

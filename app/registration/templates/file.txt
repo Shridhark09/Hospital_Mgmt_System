@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Patients</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total Doctors</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+def register(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+
+        user = User.objects.create_user(username, password1)
+        user.name = username
+
+        user.save()
+
+        messages.success(request, "your accounts has been created sucessfully")
+
+        return redirect('login')
+    return render(request, "register.html")
+
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password1 = request.post['password1']
+
+        user = authenticate(username=username, password=password1)
+
+        if user is not None:
+            login(request, user)
+            return render(request, "dashboard.html")
+        else:
+            messages.error(request, "Bad credentials")
+            return redirect('home')
+
+    return HttpResponseRedirect("/accounts/login")

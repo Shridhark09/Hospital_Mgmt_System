@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% include 'base.html '%}
+<head>
+    <title>Appointment</title>
+</head>
+<body>
+<div class="page-section">
+    <div class="container">
+        <h1 class="text-center wow fadeInUp">Make an Appointment</h1>
+
+
+        <form action="{% url 'store'%}" class="main-form" method="post">
+            {% csrf_token %}
+            <div class="row mt-5 ">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                    <label class="form-label">Patient Name</label>
+                    <input type="text" class="form-control" placeholder="First name" name="Patient_name">
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft" data-wow-delay="300ms">
+                    <label class="form-label">Date of Appointment</label>
+                    <input type="date" class="form-control" name="Appointment_date">
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
+                    <label class="form-label">Disease</label>
+                    <select name="Disease" id="Disease" class="custom-select">
+                        <option value="general">General Health</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="dental">Dental</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="orthopaedics">Orthopaedics</option>
+                        <option value="covid19">covid19</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                    <label class="form-label">Doctor</label>
+<!--                    <input type="text" class="form-control" placeholder="Full name" name="Doctor_name">-->
+                    <select class="form-control" name="Doctor_name">
+                         {% for doctor in doctorList %}
+                        <option value="{{ doctor.Doctor_name  }}">{{doctor.Doctor_name}}-{{ doctor.Speciality }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
+                    <label class="form-label">Beds</label>
+                    <select class="form-control" name="Bed">
+                             {% for bed in bedList %}
+                        <option value="{{ bed.Bed_name  }}">{{bed.Bed_name}}-{{ bed.bed_count }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
+                    <label class="form-label">Blood group</label>
+                    <select name="Blood_group" id="Blood Group" class="custom-select">
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInRight" data-wow-delay="300ms">
+                    <label class="form-label">Gender</label>
+                    <select name="Gender" id="Gender" class="custom-select">
+                        <option value="Male">Male</option>
+                        <option value="Female">Femail</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInUp" data-wow-delay="300ms">
+                    <label class="form-label">Phone</label>
+                    <input type="text" class="form-control" placeholder="Phone.." name="Phone">
+                </div>
+                <div class="col-12 py-2 wow fadeInUp" data-wow-delay="300ms">
+                    <label class="form-label">Age</label>
+                    <input type="text" class="form-control" placeholder="Enter Age.." name="Age">
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Submit Request</button>
+        </form>
+
+    </div>
+</div> <!-- .page-section -->
+
+</body>
+</html>

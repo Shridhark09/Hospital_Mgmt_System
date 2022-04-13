@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% include 'base.html '%}
+<head>
+    <title>add_bed</title>
+</head>
+<body>
+<div class="page-section">
+    <div class="container">
+        <h1 class="text-center wow fadeInUp">Add Bed</h1>
+
+
+        <form action="{% url 'collect_Beds' %}" class="main-form" method="post">
+            {% csrf_token %}
+            <div class="row mt-5 ">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                    <label class="form-label">Bed_name</label>
+                    <input type="text" class="form-control" placeholder="Full name" name="Bed_name">
+                </div>
+                <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+                    <label class="form-label">Require Beds</label>
+                    <input type="text" class="form-control" placeholder="Enter Bed Count " name="bed_count">
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 wow zoomIn">Add Bed</button>
+        </form>
+
+    </div>
+</div> <!-- .page-section -->
+
+</body>
+</html>
